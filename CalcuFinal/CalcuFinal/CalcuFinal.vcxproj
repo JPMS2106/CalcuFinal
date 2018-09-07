@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="Cola.cpp" />
     <ClCompile Include="Lista.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Nodo.cpp" />
     <ClCompile Include="Pila.cpp" />
   </ItemGroup>
