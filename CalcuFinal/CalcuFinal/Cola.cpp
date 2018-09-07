@@ -15,26 +15,24 @@ Cola::~Cola() {
 
 // Inserta un nuevo elemento en la cola si no está llena
 void Cola::enqueue(const int item) {
-	Nodo* nuevo;
+	Nodo* nuevo= new Nodo(item);
 
-	try
-	{
-		nuevo = new Nodo;
-	}
-	catch (std::bad_alloc exception)
-	{
-		return;
-	}
-
-	nuevo->elemento = item;
-	nuevo->next = nullptr;
+	//try
+	//{
+	//	nuevo = new Nodo;
+	//}
+	//catch (std::bad_alloc exception)
+	//{
+	//	return;
+	//}
+	nuevo->sig = nullptr;
 
 	if (estaVacia()) {
 		head = nuevo;
 		tail = nuevo;
 	}
 	else {
-		tail->next = nuevo;
+		tail->sig = nuevo;
 		tail = nuevo;
 	}
 }
@@ -48,9 +46,9 @@ int Cola::dequeue() {
 	int valor;
 
 	tmp = head;
-	valor = head->elemento;
+	valor = head->getElmento();
 
-	head = head->next;
+	head = head->sig;
 	if (head == nullptr)
 		tail == nullptr;
 
@@ -64,7 +62,7 @@ int Cola::siguiente() {
 	if (estaVacia())
 		return -1;
 
-	return head->elemento;
+	return head->getElmento();
 }
 
 // Retorna "true" si la cola está vacía. "false", en caso contrario

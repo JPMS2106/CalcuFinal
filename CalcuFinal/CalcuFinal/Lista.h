@@ -13,7 +13,7 @@ public:
 	Lista();
 	void insertar(char);
 	void recorrer(string);
-	void buscarOperator(Pila*);
+	void buscarOperator(Pila*,Cola*);
 	void imprimirLista();
 	~Lista();
 };

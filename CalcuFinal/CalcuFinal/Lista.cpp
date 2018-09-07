@@ -57,7 +57,7 @@ void Lista::imprimirLista() {
 	}
 }
 
-void Lista::buscarOperator(Pila *pila) {
+void Lista::buscarOperator(Pila *pila,Cola *cola) {
 	Nodo * aux;
 	aux = primero;
 	while (aux->sig != NULL)
@@ -65,9 +65,11 @@ void Lista::buscarOperator(Pila *pila) {
 		if (aux->getElmento() == '*' || aux->getElmento() == '/' || aux->getElmento() == '+' || aux->getElmento() == '-' || aux->getElmento() == '^')
 		{
 			pila->push(aux->getElmento());
-		}
-		else {
-			//insertar en la cola numeros y parentesis
+		}else {
+			if (aux->getElmento()>=0 && aux->getElmento()<=9)
+			{
+				cola->enqueue(aux->getElmento());
+			}
 		}
 		aux = aux->sig;
 
