@@ -5,6 +5,7 @@
 Lista::Lista()
 {
 	primero = Ultimo = NULL;
+	this->tam=0;
 }
 
 void Lista::insertar(char dato) {
@@ -18,6 +19,7 @@ void Lista::insertar(char dato) {
 		Ultimo->sig = nuevo;
 		nuevo->ant = Ultimo;
 		Ultimo = nuevo;
+		tam++;
 	}
 }
 
@@ -33,6 +35,7 @@ void Lista::recorrer(string cadena) {
 			Ultimo->sig = nuevo;
 			nuevo->ant = Ultimo;
 			Ultimo = nuevo;
+			tam++;
 		}
 	}
 }
@@ -57,22 +60,27 @@ void Lista::imprimirLista() {
 	}
 }
 
+int Lista::getTam() {
+	return this->tam;
+}
+
 void Lista::buscarOperator(Pila *pila,Cola *cola) {
 	Nodo * aux;
+	int cont = 0;
 	aux = primero;
-	while (aux->sig != NULL)
+	while (cont<=Lista::getTam())
 	{
 		if (aux->getElmento() == '*' || aux->getElmento() == '/' || aux->getElmento() == '+' || aux->getElmento() == '-' || aux->getElmento() == '^')
 		{
 			pila->push(aux->getElmento());
 		}else {
-			if (aux->getElmento()>=0 && aux->getElmento()<=9)
-			{
+			//if (aux->getElmento()>=0 && aux->getElmento()<=9)
+			//{
 				cola->enqueue(aux->getElmento());
-			}
+			//}
 		}
 		aux = aux->sig;
-
+		cont++;
 	}
 }
 
