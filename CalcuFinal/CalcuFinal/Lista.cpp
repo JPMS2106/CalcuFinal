@@ -1,0 +1,80 @@
+#include "Lista.h"
+
+
+
+Lista::Lista()
+{
+	primero = Ultimo = NULL;
+}
+
+void Lista::insertar(char dato) {
+	Nodo * nuevo = new Nodo(dato);
+	if (primero == NULL)
+	{
+		primero = Ultimo = nuevo;
+	}
+	else
+	{
+		Ultimo->sig = nuevo;
+		nuevo->ant = Ultimo;
+		Ultimo = nuevo;
+	}
+}
+
+void Lista::recorrer(string cadena) {
+	for (int i = 0; i < cadena.size(); i++) {
+		Nodo * nuevo = new Nodo(cadena[i]);
+		if (primero == NULL)
+		{
+			primero = Ultimo = nuevo;
+		}
+		else
+		{
+			Ultimo->sig = nuevo;
+			nuevo->ant = Ultimo;
+			Ultimo = nuevo;
+		}
+	}
+}
+
+
+
+void Lista::imprimirLista() {
+	if (primero == NULL)
+	{
+		cout << "No hay elementos en la Lista" << endl;
+	}
+	Nodo * temp = primero;
+	bool bandera = true;
+	while (bandera)
+	{
+		if (temp == Ultimo)
+		{
+			bandera = false;
+		}
+		cout << temp->getElmento();
+		temp = temp->sig;
+	}
+}
+
+void Lista::buscarOperator(Pila *pila) {
+	Nodo * aux;
+	aux = primero;
+	while (aux->sig != NULL)
+	{
+		if (aux->getElmento() == '*' || aux->getElmento() == '/' || aux->getElmento() == '+' || aux->getElmento() == '-' || aux->getElmento() == '^')
+		{
+			pila->push(aux->getElmento());
+		}
+		else {
+			//insertar en la cola numeros y parentesis
+		}
+		aux = aux->sig;
+
+	}
+}
+
+
+Lista::~Lista()
+{
+}
